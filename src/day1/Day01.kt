@@ -3,7 +3,7 @@ package day1
 import readInput
 
 fun main() {
-    fun part1(input: List<String>): Int {
+    fun getElfs(input: List<String>): List<Int> {
         val elfs: MutableList<Int> = mutableListOf()
         val elf: MutableList<Int> = mutableListOf()
         for (c in input) {
@@ -14,11 +14,17 @@ fun main() {
                 elf.add(c.toInt())
             }
         }
+        return elfs.toList()
+    }
+    fun part1(input: List<String>): Int {
+        val elfs = getElfs(input)
         return elfs.max()
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val elfs = getElfs(input)
+
+        return elfs.sorted().takeLast(3).sum()
     }
 
     val input = readInput("day1/input")
