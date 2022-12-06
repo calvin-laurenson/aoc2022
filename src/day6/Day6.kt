@@ -21,13 +21,24 @@ fun main() {
         throw Exception("no seq")
     }
 
-    fun part2(input: List<String>): Int {
-        return 0
+    f@ fun part2(input: List<String>): Int {
+        val str = input[0]
+        val chars = mutableListOf<Char>()
+        str.forEachIndexed { i, c ->
+            chars.add(c)
+            if (chars.toSet().size == 14) {
+                return@f i + 1
+            }
+            if (chars.size == 14) {
+                chars.removeFirst()
+            }
+        }
+        throw Exception("no seq")
     }
 
     val testInput = readInput("day6/test")
     check(part1(testInput) == 11)
-//    check(part2(testInput) == 0)
+    check(part2(testInput) == 26)
     val input = readInput("day6/input")
     println(part1(input))
     println(part2(input))
